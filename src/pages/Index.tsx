@@ -1,13 +1,31 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useEffect } from "react";
+import { DbPartnersOnePager } from "@/components/dbp/DbPartnersOnePager";
 
 const Index = () => {
+  useEffect(() => {
+    document.title = "DB Partners | HR, Transformation & IR Consulting";
+
+    const ensureMeta = (name: string, content: string) => {
+      let tag = document.querySelector(`meta[name='${name}']`) as HTMLMetaElement | null;
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute("name", name);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", content);
+    };
+
+    ensureMeta(
+      "description",
+      "DB Partners is a South African consulting company providing HR, Transformation and Industrial Relations support with practical operational solutions and legislative compliance.",
+    );
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <main>
+      <h1 className="sr-only">DB Partners</h1>
+      <DbPartnersOnePager />
+    </main>
   );
 };
 
