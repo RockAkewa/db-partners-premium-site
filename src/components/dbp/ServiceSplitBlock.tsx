@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -65,7 +66,7 @@ export function ServiceSplitBlock({
 
             <div className="mt-7">
               <Button asChild variant="heroOutline" size="lg" className="w-full sm:w-auto">
-                <a href="#contact">Enquire Now</a>
+                <Link to="/contact">Enquire Now</Link>
               </Button>
             </div>
           </div>
