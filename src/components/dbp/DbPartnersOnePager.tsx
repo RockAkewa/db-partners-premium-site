@@ -6,13 +6,18 @@ import { DbHeader } from "@/components/dbp/DbHeader";
 import { ServiceSplitBlock } from "@/components/dbp/ServiceSplitBlock";
 import { ContactFormCard } from "@/components/dbp/ContactFormCard";
 import { cn } from "@/lib/utils";
-import { Briefcase, Handshake, Scale, Sparkles, Target, CheckCircle2 } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 import aboutImage from "@/assets/about-boardroom.jpg";
 import hrImage from "@/assets/service-human-resources.jpg";
 import irImage from "@/assets/service-industrial-relations.jpg";
 import transformationImage from "@/assets/service-transformation.jpg";
 import trainingImage from "@/assets/service-training.jpg";
+import roiLegalImage from "@/assets/roi-legal-risk.jpg";
+import roiEmployeeImage from "@/assets/roi-employee-relations.jpg";
+import roiCostImage from "@/assets/roi-cost-effective.jpg";
+import roiExpertImage from "@/assets/roi-expert-guidance.jpg";
+import roiOperationalImage from "@/assets/roi-operational.jpg";
 
 function prefersReducedMotion() {
   return (
@@ -42,11 +47,11 @@ export function DbPartnersOnePager() {
 
   const benefits = useMemo(
     () => [
-      { title: "Reduced Legal Risk", icon: Scale },
-      { title: "Improved Employee Relations", icon: Handshake },
-      { title: "Cost effective solutions", icon: Target },
-      { title: "Expert Guidance and assistance", icon: Briefcase },
-      { title: "Operational effectiveness", icon: CheckCircle2 },
+      { title: "Reduced Legal Risk", image: roiLegalImage },
+      { title: "Improved Employee Relations", image: roiEmployeeImage },
+      { title: "Cost Effective Solutions", image: roiCostImage },
+      { title: "Expert Guidance & Assistance", image: roiExpertImage },
+      { title: "Operational Effectiveness", image: roiOperationalImage },
     ],
     [],
   );
@@ -180,31 +185,36 @@ export function DbPartnersOnePager() {
       <section id="why" className="section-anchor py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <div className="max-w-2xl">
-            <h2 className="font-heading text-3xl font-semibold tracking-tightish md:text-5xl">
-              The return on investment of the DB Partnership
+          <h2 className="font-heading text-3xl font-semibold tracking-tightish md:text-5xl">
+              DB Partners provides the following return on investment
             </h2>
             <p className="mt-4 text-muted-foreground">
               A premium, compliant approach that supports your leadership team and protects the organisation.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {benefits.map(({ title, icon: Icon }) => (
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {benefits.map(({ title, image }) => (
               <Card
                 key={title}
                 className={cn(
-                  "rounded-2xl border bg-card p-5 shadow-soft",
+                  "group relative overflow-hidden rounded-2xl border-0 shadow-soft",
                   "transition-transform hover:-translate-y-0.5",
                 )}
               >
-                <div className="flex items-start gap-3">
-                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-secondary text-secondary-foreground">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="font-heading text-sm font-semibold tracking-tightish">{title}</p>
-                    <p className="mt-1 text-xs text-muted-foreground">Clear, measurable impact.</p>
-                  </div>
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={image}
+                    alt={title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/20 to-transparent" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <p className="font-heading text-base font-semibold tracking-tightish text-white md:text-lg">
+                    {title}
+                  </p>
                 </div>
               </Card>
             ))}
